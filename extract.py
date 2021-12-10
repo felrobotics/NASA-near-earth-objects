@@ -25,14 +25,13 @@ def load_neos(neo_csv_path):
     """
     # Load NEO data from the given CSV file.
     neos = []
-    with open(neo_csv_path, 'r') as infile:
-        reader = csv.reader(infile)
-        next(reader)  # Skip the header line.
-        for row in reader:
-            designation = row[3]
-            name = row[4]
-            diameter = row[15]
-            hazardous = row[7]
+    with open(neo_csv_path, 'r') as infile:        
+        reader = csv.DictReader(infile)
+        for elem in reader:            
+            designation = elem['pdes']
+            name = elem['name']
+            diameter = elem['diameter']
+            hazardous = elem['pha']
             neo = NearEarthObject(
                 designation=designation,
                 name=name,

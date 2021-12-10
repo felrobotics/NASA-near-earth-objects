@@ -307,7 +307,7 @@ def create_filters(date=None, start_date=None, end_date=None,
         filters.append(DiameterMinFilter(diameter_min))
     if diameter_max:
         filters.append(DiameterMaxFilter(diameter_max))
-    if hazardous or hazardous == False:  # case hazardous = False or True, but != None
+    if hazardous is not None:
         filters.append(HazardousFilter(hazardous))
     return filters
 
